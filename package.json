@@ -4,7 +4,8 @@
   "private": true,
   "description": "A hubot instance using Discord",
   "scripts": {
-    "start": "node node_modules/coffee-script/bin/coffee node_modules/hubot/bin/hubot --name ghost --adapter discord"
+    "start": "node node_modules/coffee-script/bin/coffee node_modules/hubot/bin/hubot --name ghost --adapter discord",
+    "test": "mocha --recursive --compilers coffee:coffee-script/register --require coffee-coverage/register-istanbul test --timeout 10000"
   },
   "dependencies": {
     "async": "^1.5.1",

@@ -13,3 +13,4 @@ brain-dump.json
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+coverage
