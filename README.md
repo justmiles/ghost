@@ -1,0 +1,2 @@
+# Ghost
+A Hubot implementation
