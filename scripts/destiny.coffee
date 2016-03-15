@@ -17,7 +17,7 @@ module.exports = (robot) ->
   robot.respond /show (.*) guardians/i, (msg) ->
     displayName = escape(msg.match[1])
     if displayName == 'my'
-      displayName = msg.message.user.id.username
+      displayName = msg.message.user.name
     destiny.searchDestinyPlayer displayName, (err, players) ->
       if players[0] == undefined
         msg.send "No guardians found for #{displayName}"
