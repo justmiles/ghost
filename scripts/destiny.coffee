@@ -2,10 +2,13 @@
 #   Action alias for hubot
 #
 # Commands:
-#   hubot show (gamertag) guardians
+#   hubot show (gamertag|my) guardians
 #
 
 DestinyClient = require 'destinyclient'
+TitanHash = 3655393761
+HunterHash = 671679327
+WarlockHash = 2271682572
 
 module.exports = (robot) ->
   return console.error 'Destiny not configured! Set DESTINY_API environment variable' unless process.env.DESTINY_API
@@ -20,5 +23,15 @@ module.exports = (robot) ->
         msg.send "No guardians found for #{displayName}"
       for player in players
         destiny.getAccountSummary player.membershipType, player.membershipId, (err, accountSummary) ->
+          name = unescape(displayName)
+          response = "```#{name}'s Guardians:\n"
           for character in accountSummary.data.characters
-            msg.send "https://www.bungie.net#{character.emblemPath}"
+            characterInfo = character.characterBase
+            if characterInfo.classHash == TitanHash
+              response = response + "Titan - #{characterInfo.powerLevel}\n"
+            if characterInfo.classHash == HunterHash
+              response = response + "Hunter - #{characterInfo.powerLevel} \n"
+            if characterInfo.classHash == WarlockHash
+              response = response + "Warlock - #{characterInfo.powerLevel} \n"
+          response = response + "```"
+          msg.send response
