@@ -6,9 +6,6 @@
 #
 
 DestinyClient = require 'destinyclient'
-TitanHash = 3655393761
-HunterHash = 671679327
-WarlockHash = 2271682572
 
 module.exports = (robot) ->
   return console.error 'Destiny not configured! Set DESTINY_API environment variable' unless process.env.DESTINY_API
@@ -24,14 +21,12 @@ module.exports = (robot) ->
       for player in players
         destiny.getAccountSummary player.membershipType, player.membershipId, (err, accountSummary) ->
           name = unescape(displayName)
+          destinyClasses = accountSummary.definitions.classes
           response = "```#{name}'s Guardians:\n"
           for character in accountSummary.data.characters
             characterInfo = character.characterBase
-            if characterInfo.classHash == TitanHash
-              response = response + "Titan - #{characterInfo.powerLevel}\n"
-            if characterInfo.classHash == HunterHash
-              response = response + "Hunter - #{characterInfo.powerLevel} \n"
-            if characterInfo.classHash == WarlockHash
-              response = response + "Warlock - #{characterInfo.powerLevel} \n"
+            destinyClass = destinyClasses[characterInfo.classHash]
+            if destinyClass != null
+              response = response + "#{destinyClass.className} - #{characterInfo.powerLevel}\n"
           response = response + "```"
           msg.send response
