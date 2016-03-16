@@ -14,8 +14,9 @@ module.exports = (robot) ->
 	robot.respond /show (.*) loadout for (.*)/i, (msg) ->
 		classRequest = msg.match[1]
 		name = msg.match[2]
+		if name == 'me'
+      		name = msg.message.user.name
 		urlName = escape(name)
-
 		destiny.searchDestinyPlayer urlName, (err, players) ->
     		if players[0] == undefined
         		msg.send "No guardians found for #{name}"
