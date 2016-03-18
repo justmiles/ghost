@@ -5,6 +5,7 @@
   "description": "A hubot instance using Discord",
   "scripts": {
     "start": "node node_modules/coffee-script/bin/coffee node_modules/hubot/bin/hubot --name ghost --adapter discord",
+    "dev": "nodemon -e js,coffee node_modules/coffee-script/bin/coffee node_modules/hubot/bin/hubot --name ghost --adapter shell",
     "test": "mocha --recursive --compilers coffee:coffee-script/register --require coffee-coverage/register-istanbul test; npm run coverage-text",
     "coverage": "./node_modules/.bin/istanbul report",
     "coverage-text": "./node_modules/.bin/istanbul report text-summary lcov"
@@ -15,7 +16,7 @@
     "destinyclient": "^1.0.0",
     "firebase": "^2.4.0",
     "firebase-token-generator": "^2.0.0",
-    "hubot": "2.12.0",
+    "hubot": "^2.18.0",
     "hubot-auth": "1.2.0",
     "hubot-diagnostics": "0.0.1",
     "hubot-discord": "^1.0.1",
