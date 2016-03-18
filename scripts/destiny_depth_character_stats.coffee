@@ -75,7 +75,7 @@ module.exports = (robot) ->
 									 	response += "Zones Captured: #{stats.zonesCaptured.basic.displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}\n"
 									else if apiActivity == 'patrol'
 										response += "Public Events Completed: #{stats.publicEventsCompleted.basic.displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}\n"
-										response += "Court of Oryx Competions: #{stats.courtOfOryxCompletions.basic.displayValue}"
+										response += "Court of Oryx Competions: #{stats.courtOfOryxCompletions.basic.displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}\n"
 									else 
 										response += "Activities Cleared: #{stats.activitiesCleared.basic.displayValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}\n"
 									response += "K/D: #{stats.killsDeathsRatio.basic.displayValue}\n"
